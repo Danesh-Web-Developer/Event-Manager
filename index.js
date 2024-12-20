@@ -1,116 +1,77 @@
-const logout = () => {
-    const user = firebase.auth().currentUser;
-    if (user) {
-        const db = firebase.firestore();
-        firebase.auth().onAuthStateChanged((user) => {
-            if (user) {
-                const userid = user.uid;
-                console.log("User is signed in:", userid);
-                db.collection("Current user").doc(userid).delete().then(() => {
-                    firebase.auth().signOut().then(() => {
-                        console.log("success");
+const createacc = () => {
+  window.location.replace("./signup/signup.html")
+}
 
-                    }).catch((error) => {
-                        console.log("error");
+const errorElement = document.getElementById("error");
+const message = document.createElement("p");
+message.setAttribute("class", "p");
+errorElement.appendChild(message);
 
-                    });
-                    window.location.replace('./login.html')
-                }).catch((error) => {
-                    console.error("Error removing document: ", error);
+const login = () => {
 
-                })
-            } else {
-                console.log("No user is currently signed in");
-            }
-        });
-    };
-};
+  let email = document.getElementById("email").value
+  let password = document.getElementById("password").value
+  let loader = document.getElementById("loader");
+  let buttonText = document.getElementById("buttonText");
 
-const container = document.getElementById("container");
-const row = document.getElementById("row")
-container.appendChild(row);
+  if (email && password) {
+    loader.style.display = "inline-block";
+    buttonText.style.display = "none";
+    firebase.auth().signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        var user = userCredential.user;
+        let userid = user.uid
 
-const getData = () => {
-    const loader = document.getElementById("loader");
-    loader.style.display = "flex";
-    row.style.display = "none";
-    const db = firebase.firestore();
-    db.collection("Events").get().then((querySnapshot) => {
+        const db = firebase.firestore()
+        db.collection("Current user").doc(userid).set({
+          email: email,
+          password: password,
+          userid: userid
+        })
+          .then(() => {
+            console.log("Document successfully written!");
+            window.location.replace("./home.html")
+          })
+          .catch((error) => {
+            console.error("Error writing document: ", error);
+          });
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
         loader.style.display = "none";
-        row.style.display = "flex";
-        querySnapshot.forEach((doc) => {
-
-            var col = document.createElement("col");
-            col.setAttribute("class", "col-lg-3 col-md-6 col-12");
-            row.appendChild(col);
-
-            var card = document.createElement("div");
-            card.setAttribute("class", "card mb-4");
-            col.appendChild(card);
-
-            const image = document.createElement("img");
-            image.src = doc.data().image;
-            image.alt = "Event Image";
-            image.setAttribute("class", "img")
-            card.appendChild(image);
-
-            var Cardbody = document.createElement("div");
-            Cardbody.setAttribute("class", "card-body");
-            card.appendChild(Cardbody);
-
-            var title = document.createElement("h3");
-            title.setAttribute("class", "card-title");
-            title.innerText = doc.data().title;
-            Cardbody.appendChild(title);
-
-            var desc = document.createElement("h6");
-            desc.setAttribute("class", "card-text mt-3");
-            desc.innerText = doc.data().description;
-            Cardbody.appendChild(desc);
-
-            let date = document.createElement("p");
-            date.setAttribute("class", "card-text mt-3");
-            let eventDate = doc.data().eventDate;
-            if (eventDate) {
-                const formattedDate = new Date(eventDate.seconds * 1000).toLocaleString();
-                date.innerText = `Date: ${ formattedDate }`;
-            } else {
-                date.innerText = "Date: Not Available";
-            }
-            Cardbody.appendChild(date);
-
-        });
-    });
-}
-
-const currusername = () => {
-    let curntusername = document.getElementById("currentusername")
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            const useremail = user.email;
-            const db = firebase.firestore();
-
-            db.collection("Users")
-                .where("email", "==", useremail)
-                .get()
-                .then((querySnapshot) => {
-                    if (querySnapshot.empty) {
-                        console.log("No username found for the current user.");
-                    } else {
-                        querySnapshot.forEach((doc) => {
-                            let firstname = doc.data().firstname
-                            let lastname = doc.data().lastname
-                            let fullname = firstname + " " + lastname
-                            curntusername.innerText = fullname
-                        });
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error fetching user events:", error);
-                });
+        buttonText.style.display = "inline";
+        allertTime()
+        if (errorMessage === '{"error":{"code":400,"message":"INVALID_LOGIN_CREDENTIALS","errors":[{"message":"INVALID_LOGIN_CREDENTIALS","domain":"global","reason":"invalid"}]}}') {
+          message.innerText = "Emial or Password Invaild"
+          allertTime()
         } else {
-            console.log("User is not authenticated. Redirect to login page.");
+          message.innerText = errorMessage
+          allertTime()
         }
+      });
+  }
+  else {
+    message.innerText = "All field or required..."
+    allertTime()
+  }
+}
+
+const forgetpass = () => {
+  let email = document.getElementById("email").value
+  firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      console.log("success fully");
+
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      message.innerText = errorMessage
     });
 }
 
+function allertTime() {
+  setTimeout(() => {
+    message.innerText = "";
+  }, 3000);
+}

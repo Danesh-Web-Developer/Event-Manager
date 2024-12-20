@@ -31,7 +31,7 @@ const addevent = () => {
                 })
                     .then((docRef) => {
                         console.log("Document written with ID: ", docRef.id);
-                        window.location.replace("./index.html")
+                        window.location.replace("./home.html")
                     })
                     .catch((error) => {
                         loader.style.display = "none";

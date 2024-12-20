@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY EVENT</title>
+    <title>HOME</title>
     <link rel="stylesheet" href="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="./home.css">
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
@@ -17,14 +17,13 @@
     <div class="container-fluid d-flex justify-content-center" style="margin-top: 30px;">
         <nav class="navbar navbar-expand-lg col-11" id="navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="./home.html" style="margin-left: 7px;"><img class="logoimg"
+                <a class="navbar-brand" href="#" style="margin-left: 7px;"><img class="logoimg"
                         src="./images/images (1).png" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse justify-content: space-between;" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -32,21 +31,21 @@
                                 href="./createevent.html">Create Event</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" id="myevent" href="./myevent.html">My
-                                Event</a>
+                            <a class="nav-link active" id="myevent" href="./myevent.html">My Event</a>
                         </li>
                     </ul>
-                    <div id="loader"
-                        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center;">
-                        <div class="spinner-border" style="color: rgb(255, 255, 255); width: 50px; height: 50px;" role="status">
-                            <span class="visually-hidden"></span>
-                        </div>
-                    </div>
                     <div class="navbtn">
                         <span id="currentusername"></span>
+                        <button class="btn" onclick="logout()"><img src="./images/logout.png" alt="logout" style="margin-left: -10px;">
+                            Logout</button>
                     </div>
                 </div>
-            </div>
+                <div id="loader"
+                    style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; display: flex; justify-content: center; align-items: center;">
+                    <div class="spinner-border " style="color: rgb(255, 255, 255); width: 50px; height: 50px;" role="status">
+                        <span class="visually-hidden"></span>
+                    </div>
+                </div>
         </nav>
     </div>
 
@@ -59,7 +58,7 @@
     </div>
 
     <script src="./bootstrap-5.3.3-dist/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-    <script src="./myevent.js"></script>
+    <script src="./home.js"></script>
 </body>
 
 </html>
