@@ -6,6 +6,8 @@
 body {
     background-image: url("images/cool-background-ppt.jpg");
     background-size: cover;
+    background-position: center;
+    /* background-repeat: no-repeat; */
     font-family: Poppins;
 }
 
@@ -86,18 +88,21 @@ body {
     }
 
     .card {
-        height: 67vh;
+        height: 36vh;
     }
 }
 
 @media only screen and (max-width: 375px) {
     .img {
-        height: 170px;
+        height: 180px;
+    }
+    .card {
+        height: 50vh;
     }
 }
-@media only screen and (max-width: 299px) {
+@media only screen and (max-width: 344px) {
     .card {
-        height: 70vh;
+        height: 42vh;
     }
 }
 
