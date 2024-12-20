@@ -29,7 +29,7 @@ body {
     transform: scale(1.1);
 }
 
-.logoimg{
+.logoimg {
     width: 60px;
     height: 60px;
     border-radius: 35px;
@@ -47,7 +47,7 @@ body {
 }
 
 .card:hover {
-    transform: translateY(-13px);
+    transform: translateX(-13px);
 }
 
 .img {
@@ -86,18 +86,21 @@ body {
     }
 
     .card {
-        height: 63vh;
+        height: 67vh;
     }
 }
+
 @media only screen and (max-width: 375px) {
     .img {
         height: 170px;
     }
-
+}
+@media only screen and (max-width: 299px) {
     .card {
-        height: 66vh;
+        height: 70vh;
     }
 }
+
 @media only screen and (max-width: 351px) {
     .btn {
         margin-top: 5px;

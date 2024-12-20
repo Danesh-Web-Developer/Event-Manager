@@ -54,7 +54,7 @@
         width: 140px;
         height: 38px;
         border: none;
-        background-color: rgb(1, 162, 255);
+        background-color: #4467c7;
         color: white;
         font-size: 19px;
         transition: all 0.5s ease;
@@ -68,11 +68,24 @@
         background-color: rgb(43, 67, 132);
         transform: scale(1.1);
     }
-
+    .forgetpass{
+        margin-left: 13px;
+        color: white;
+    }
+    .createacc{
+        color: white;
+        font-size: 18px;
+    }
 
     @media only screen and (max-width: 375px) {
         #loginbtn {
-            width: 70px;
+            width: 75px;
+        }
+        .forgetpass{
+            font-size: 14px;
+        }
+        .createacc{
+            font-size: 14px;
         }
     }
 </style>
@@ -95,7 +108,7 @@
                                 aria-describedby="passwordHelpBlock">
                         </div>
                     </div>
-                    <div class="mb-3 text-center">
+                    <div class="mb-2 text-center">
                         <button class="btn" onclick="login()" id="loginbtn">
                             <span id="buttonText">Login</span>
                             <div id="loader" class="spinner-border spinner-border-sm text-light" role="status"
@@ -103,13 +116,10 @@
                                 <span class="visually-hidden"></span>
                             </div>
                         </button>
-                        <a class="forgetpass" href="JavaScript:void(0)" onclick="forgetpass()"
-                            style="margin-left: 13px; color: white;">Forget Password</a>
+                        <a class="forgetpass" href="JavaScript:void(0)" onclick="forgetpass()">Forget Password</a>
                     </div>
-                    <div class="text-center" style="font-size: 18px;">
-                        <a class="createacc" href="JavaScript:void(0)" onclick="createacc()"
-                            style="color: white;">Create
-                            Account</a>
+                    <div class="text-center">
+                        <a class="createacc" href="JavaScript:void(0)" onclick="createacc()">Create Account</a>
                     </div>
                 </div>
             </div>

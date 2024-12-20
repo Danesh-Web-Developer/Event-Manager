@@ -26,7 +26,8 @@ const addevent = () => {
                     description: description,
                     date: date,
                     userid: uid,
-                    userEmail: email
+                    userEmail: email,
+                    eventDate: firebase.firestore.FieldValue.serverTimestamp()
                 })
                     .then((docRef) => {
                         console.log("Document written with ID: ", docRef.id);

@@ -70,7 +70,13 @@ const getData = () => {
 
             let date = document.createElement("p");
             date.setAttribute("class", "card-text mt-3");
-            date.innerText = doc.data().date;
+            let eventDate = doc.data().eventDate;
+            if (eventDate) {
+                const formattedDate = new Date(eventDate.seconds * 1000).toLocaleString();
+                date.innerText = `Date: ${ formattedDate }`;
+            } else {
+                date.innerText = "Date: Not Available";
+            }
             Cardbody.appendChild(date);
 
         });
